@@ -431,7 +431,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.25
-  autoMove: 0
+  autoMove: 1
   player: {fileID: 158002758}
   offset: {x: 3, y: 6, z: -3}
 --- !u!114 &95531727
