@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
+
+	private static string UP = "up";
+	private static string DOWN = "down";
+	private static string LEFT = "left";
+	private static string RIGHT = "right";
+
 	public float moveDistance 			= 1;
 	public float moveTime 				= 0.4f;
 	public float colliderDistCheck 		= 1;
@@ -15,10 +21,14 @@ public class PlayerController : MonoBehaviour {
 	public float angleCheck 			= 1;
 	public float angleCheckDist 		= 0.5f;
 
-	public ParticleSystem 	particle 	= null;
-	public GameObject 		chick 		= null;
-	private Renderer 		renderer 	= null;
-	private bool 			isVisible 	= false;
+	public bool mouseControl = false;
+	public bool keyboardControl = true;
+
+	public ParticleSystem 	particle 		= null;
+	public GameObject 		chick 			= null;
+	private Renderer 		renderer 		= null;
+	private bool 			isVisible 		= false;
+	private string 			moveDirection 	= null;
 
 	public AudioClip audioIdle1  = null;
 	public AudioClip audioIdle2  = null;
@@ -47,10 +57,62 @@ public class PlayerController : MonoBehaviour {
 
 	void CanIdle () {
 		if (isIdle) {
-			if (Input.GetKey (KeyCode.UpArrow)) 	CheckIfIdle (270,   0, 	0);
-			if (Input.GetKey (KeyCode.DownArrow)) 	CheckIfIdle (270, 180, 	0);
-			if (Input.GetKey (KeyCode.LeftArrow)) 	CheckIfIdle (270, -90, 	0);
-			if (Input.GetKey (KeyCode.RightArrow)) 	CheckIfIdle (270,  90, 	0);
+			if (keyboardControl) {
+				if (Input.GetKey (KeyCode.UpArrow))
+					CheckIfIdle (270, 0, 0);
+				if (Input.GetKey (KeyCode.DownArrow))
+					CheckIfIdle (270, 180, 0);
+				if (Input.GetKey (KeyCode.LeftArrow))
+					CheckIfIdle (270, -90, 0);
+				if (Input.GetKey (KeyCode.RightArrow))
+					CheckIfIdle (270, 90, 0);
+			}
+			if (mouseControl) {
+				if (Input.GetMouseButtonDown (0)) {
+					Vector3 mousePosition = Input.mousePosition;
+					/*
+					Debug.Log ("Mouse x = " + mousePosition.x.ToString ());
+					Debug.Log ("Mouse y = " + mousePosition.y.ToString ());
+					Debug.Log ("Mouse z = " + mousePosition.z.ToString ());
+					Debug.Log ("Chicken x = " + this.transform.position.x.ToString ());
+					Debug.Log ("Chicken y = " + this.transform.position.y.ToString ());
+					Debug.Log ("Chicken z = " + this.transform.position.z.ToString ());
+					*/
+					double h = System.Math.Sqrt ((mousePosition.z - this.transform.position.z) * (mousePosition.z - this.transform.position.z) + (mousePosition.x - this.transform.position.x) * (mousePosition.x - this.transform.position.x));
+					double cos = (mousePosition.z - this.transform.position.z) / h;
+					Debug.Log ("Cos: " + cos.ToString ());
+					Debug.Log ("PI: " + System.Math.PI.ToString ());
+					Debug.DrawRay (this.transform.position, mousePosition, Color.red, 10);
+					if (cos < (System.Math.PI)/4 || cos > 7*(System.Math.PI)/4) {
+						//UP
+						Debug.Log("UP");
+						moveDirection = UP;
+						CheckIfIdle (270, 0, 0);
+						Debug.Log("DONE");
+					}
+					if (cos > (System.Math.PI)/4 && cos < 3*(System.Math.PI)/4) {
+						//LEFT
+						Debug.Log("LEFT");
+						moveDirection = LEFT;
+						CheckIfIdle (270, -90, 0);
+						Debug.Log("DONE");
+					}
+					if (cos > 3*(System.Math.PI)/4 && cos < 53*(System.Math.PI)/4) {
+						//DOWN
+						Debug.Log("DOWN");
+						moveDirection = DOWN;
+						CheckIfIdle (270, 180, 0);
+						Debug.Log("DONE");
+					}
+					if (cos > 5*(System.Math.PI)/4 && cos < 7*(System.Math.PI)/4) {
+						//RIGHT
+						Debug.Log("RIGHT");
+						moveDirection = RIGHT;
+						CheckIfIdle (270, 90, 0);
+						Debug.Log("DONE");
+					}
+				}
+			}
 		}
 	}
 
@@ -74,7 +136,7 @@ public class PlayerController : MonoBehaviour {
 			SetMove ();
 		} else {
 			if (hit.collider.tag == "collider") {
-				//Debug.Log ("Hit something with collider tag.");
+				Debug.Log ("Hit something with collider tag.");
 				isIdle = true;
 			} else {
 				SetMove ();
@@ -112,7 +174,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void SetMove () {
-		//Debug.Log ("Hit nothing. Keep moving.");
+		Debug.Log ("Hit nothing. Keep moving.");
 
 		isIdle = false;
 		isMoving = true;
@@ -121,30 +183,46 @@ public class PlayerController : MonoBehaviour {
 
 	void CanMove () {
 		if (isMoving) {
-			if (Input.GetKeyUp (KeyCode.UpArrow)) {
-				Moving (new Vector3 (transform.position.x, transform.position.y, transform.position.z + moveDistance));
-				SetMoveForwardState ();
-			} else if (Input.GetKeyUp (KeyCode.DownArrow)) {
-				Moving (new Vector3 (transform.position.x, transform.position.y, transform.position.z - moveDistance));
-			} else if (Input.GetKeyUp (KeyCode.LeftArrow)) {
-				Moving (new Vector3 (transform.position.x - moveDistance, transform.position.y, transform.position.z));
-			} else if (Input.GetKeyUp (KeyCode.RightArrow)) {
-				Moving (new Vector3 (transform.position.x + moveDistance, transform.position.y, transform.position.z));
+			if (keyboardControl) {
+				if (Input.GetKeyUp (KeyCode.UpArrow)) {
+					Moving (new Vector3 (transform.position.x, transform.position.y, transform.position.z + moveDistance));
+					SetMoveForwardState ();
+				} else if (Input.GetKeyUp (KeyCode.DownArrow)) {
+					Moving (new Vector3 (transform.position.x, transform.position.y, transform.position.z - moveDistance));
+				} else if (Input.GetKeyUp (KeyCode.LeftArrow)) {
+					Moving (new Vector3 (transform.position.x - moveDistance, transform.position.y, transform.position.z));
+				} else if (Input.GetKeyUp (KeyCode.RightArrow)) {
+					Moving (new Vector3 (transform.position.x + moveDistance, transform.position.y, transform.position.z));
+				}
+			}
+			if (mouseControl) {
+				Debug.Log ("CanMove");
+				if (moveDirection == UP) {
+					Moving (new Vector3 (transform.position.x, transform.position.y, transform.position.z + moveDistance));
+					SetMoveForwardState ();
+				} else if (moveDirection == DOWN) {
+					Moving (new Vector3 (transform.position.x, transform.position.y, transform.position.z - moveDistance));
+				} else if (moveDirection == LEFT) {
+					Moving (new Vector3 (transform.position.x - moveDistance, transform.position.y, transform.position.z));
+				} else if (moveDirection == RIGHT) {
+					Moving (new Vector3 (transform.position.x + moveDistance, transform.position.y, transform.position.z));
+				}
 			}
 		}
 	}
 
 	void Moving (Vector3 pos) {
+		Debug.Log ("Moving");
 		isIdle = false;
 		isMoving = false;
 		isJumping = true;
 		jumpStart = false;
-
 		PlayAudioClip (audioHop);
 		LeanTween.move (this.gameObject, pos, moveTime).setOnComplete (MoveComplete);
 	}
 
 	void MoveComplete () {
+		Debug.Log ("MoveComplete");
 		isJumping = false;
 		isIdle = true;
 

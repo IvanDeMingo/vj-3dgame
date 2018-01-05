@@ -31,6 +31,7 @@ public class Manager : MonoBehaviour {
 			levelGenerator.RandomGenerator ();
 		}
 	}
+		
 
 	public void UpdateCoinCount (int value) {
 		//Debug.Log ("Player picked up another coin for " + value);
