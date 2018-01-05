@@ -69,4 +69,12 @@ public class Spawner : MonoBehaviour {
 		} else
 			return startPos.position;
 	}
+
+	public float getSpeed () {
+		return this.speed;
+	}
+
+	public void setSpeed (float sp) {
+		this.speed = sp;
+	}
 }

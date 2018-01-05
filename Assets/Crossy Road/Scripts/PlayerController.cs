@@ -97,13 +97,13 @@ public class PlayerController : MonoBehaviour {
 			SetMove ();
 		} else {
 			if (hit.collider != null && hit.collider.tag == "collider") {
-				Debug.Log ("Hit something with collider tag.");
+				//Debug.Log ("Hit something with collider tag.");
 				isIdle = true;
 			} else if (hitLeft.collider != null && hitLeft.collider.tag == "collider") {
-				Debug.Log ("Hit left something with collider tag.");
+				//Debug.Log ("Hit left something with collider tag.");
 				isIdle = true;
 			} else if (hitRight.collider != null && hitRight.collider.tag == "collider") {
-				Debug.Log ("Hit right something with collider tag.");
+				//Debug.Log ("Hit right something with collider tag.");
 				isIdle = true;
 			} else {
 				SetMove ();

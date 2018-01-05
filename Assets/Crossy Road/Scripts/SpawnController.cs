@@ -33,6 +33,10 @@ public class SpawnController : MonoBehaviour {
 			spawnersLeft [i].goLeft = goLeft;
 			spawnersLeft [i].gameObject.SetActive (goRight);
 			spawnersLeft [i].spawnLeftPos = spawnersLeft [i].transform.position.x;
+			if (i > 0 && spawnersLeft [i].speedMax - spawnersLeft [i].speedMin > 1.25f) {
+				while (Mathf.Abs(spawnersLeft [i-1].getSpeed () - spawnersLeft [i].getSpeed ()) < 1)
+					spawnersLeft [i].setSpeed (Random.Range (spawnersLeft [i].speedMin, spawnersLeft [i].speedMax));
+			}
 		}
 
 		for (int i = 0; i < spawnersRight.Count; i++) {
@@ -40,6 +44,10 @@ public class SpawnController : MonoBehaviour {
 			spawnersRight [i].goLeft = goLeft;
 			spawnersRight [i].gameObject.SetActive (goLeft);
 			spawnersRight [i].spawnRightPos = spawnersRight [i].transform.position.x;
+			if (i > 0 && spawnersLeft [i].speedMax - spawnersLeft [i].speedMin > 1.25f) {
+				while (Mathf.Abs(spawnersLeft [i-1].getSpeed () - spawnersLeft [i].getSpeed ()) < 1)
+					spawnersLeft [i].setSpeed (Random.Range (spawnersLeft [i].speedMin, spawnersLeft [i].speedMax));
+			}
 		}
 	}
 }

@@ -625,12 +625,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startPos: {fileID: 4499581244216248}
-  delayMin: 3
-  delayMax: 4
+  delayMin: 2
+  delayMax: 3
   speedMin: 1
   speedMax: 3
   useSpawnPlacement: 0
-  spawnCountMin: 4
+  spawnCountMin: 10
   spawnCountMax: 20
   item: {fileID: 0}
   goLeft: 0
@@ -648,12 +648,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startPos: {fileID: 4513934528664428}
-  delayMin: 3
-  delayMax: 4
+  delayMin: 2
+  delayMax: 3
   speedMin: 1
   speedMax: 3
   useSpawnPlacement: 0
-  spawnCountMin: 4
+  spawnCountMin: 10
   spawnCountMax: 20
   item: {fileID: 0}
   goLeft: 0
@@ -730,12 +730,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startPos: {fileID: 4883280762554734}
-  delayMin: 3
-  delayMax: 4
+  delayMin: 2
+  delayMax: 3
   speedMin: 1
   speedMax: 3
   useSpawnPlacement: 0
-  spawnCountMin: 4
+  spawnCountMin: 10
   spawnCountMax: 20
   item: {fileID: 0}
   goLeft: 0
@@ -764,12 +764,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startPos: {fileID: 4660086884184710}
-  delayMin: 3
-  delayMax: 4
+  delayMin: 2
+  delayMax: 3
   speedMin: 1
   speedMax: 3
   useSpawnPlacement: 0
-  spawnCountMin: 4
+  spawnCountMin: 10
   spawnCountMax: 20
   item: {fileID: 0}
   goLeft: 0

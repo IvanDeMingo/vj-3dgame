@@ -770,8 +770,8 @@ MonoBehaviour:
   speedMin: 1
   speedMax: 3
   useSpawnPlacement: 1
-  spawnCountMin: 12
-  spawnCountMax: 24
+  spawnCountMin: 6
+  spawnCountMax: 14
   item: {fileID: 0}
   goLeft: 0
   spawnLeftPos: 0
@@ -793,8 +793,8 @@ MonoBehaviour:
   speedMin: 1
   speedMax: 3
   useSpawnPlacement: 1
-  spawnCountMin: 12
-  spawnCountMax: 24
+  spawnCountMin: 6
+  spawnCountMax: 14
   item: {fileID: 0}
   goLeft: 0
   spawnLeftPos: 0
