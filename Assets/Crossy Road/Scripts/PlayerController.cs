@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour {
 	public bool  enableAngleCheckOnMove = false;
 	public float angleCheck 			= 1;
 	public float angleCheckDist 		= 0.5f;
+	private int distanceCount 			= 0;
+	private int distanceMax 			= 0;
 
 	public ParticleSystem 	particle 	= null;
 	public GameObject 		chick 		= null;
@@ -123,9 +125,14 @@ public class PlayerController : MonoBehaviour {
 		if (isMoving) {
 			if (Input.GetKeyUp (KeyCode.UpArrow)) {
 				Moving (new Vector3 (transform.position.x, transform.position.y, transform.position.z + moveDistance));
-				SetMoveForwardState ();
+				distanceCount++;
+				if (distanceCount > distanceMax) {
+					distanceMax = distanceCount;
+					SetMoveForwardState ();
+				}
 			} else if (Input.GetKeyUp (KeyCode.DownArrow)) {
 				Moving (new Vector3 (transform.position.x, transform.position.y, transform.position.z - moveDistance));
+				distanceCount--;
 			} else if (Input.GetKeyUp (KeyCode.LeftArrow)) {
 				Moving (new Vector3 (transform.position.x - moveDistance, transform.position.y, transform.position.z));
 			} else if (Input.GetKeyUp (KeyCode.RightArrow)) {

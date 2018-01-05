@@ -5,16 +5,18 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class Manager : MonoBehaviour {
-	public int levelCount = 50;
+	public int levelCount = 30;
 	public Text coin = null;
 	public Text distance = null;
 	public Camera camera = null;
 	public GameObject guiGameOver = null;
 	public LevelGenerator levelGenerator = null;
+	public int numLevels = 3;
 
 	private int currentCoins = 0;
 	private int currentDistance = 0;
 	private bool canPlay = false;
+	private int currentLevel = 0;
 
 	private static Manager s_Instance;
 	public static Manager instance {
@@ -28,7 +30,7 @@ public class Manager : MonoBehaviour {
 
 	void Start () {
 		for (int i = 0; i < levelCount; i++) {
-			levelGenerator.RandomGenerator ();
+			levelGenerator.RandomGenerator (0);
 		}
 	}
 
@@ -42,10 +44,13 @@ public class Manager : MonoBehaviour {
 	public void UpdateDistanceCount () {
 		//Debug.Log ("Player moved forward for one point.");
 
+		if (currentDistance % levelCount == 0)
+			currentLevel = (currentLevel + 1) % numLevels;
+
+		levelGenerator.RandomGenerator (currentLevel);
+
 		currentDistance += 1;
 		distance.text = currentDistance.ToString ();
-
-		levelGenerator.RandomGenerator ();
 	}
 
 	public bool CanPlay () {

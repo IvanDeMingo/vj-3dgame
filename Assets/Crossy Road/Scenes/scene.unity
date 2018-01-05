@@ -309,14 +309,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71046244a624349e4b5d14448e23b734, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platform:
+  platform0:
   - {fileID: 139162, guid: ce982e585b9788144ba6154129f84b06, type: 2}
   - {fileID: 127870, guid: a9a9860f534b42d499243b587e3b3e03, type: 2}
   - {fileID: 135800, guid: 82d9c4adfc0d40b49ad4a7dd0b298b9a, type: 2}
   - {fileID: 160302, guid: 73c5604e817fc0a44a46505ca4499d3a, type: 2}
   - {fileID: 173304, guid: d73cba9fda67c514a9f5de55b68877ab, type: 2}
   - {fileID: 139206, guid: 508940e8e0a497243b7dc9f78fc61cf8, type: 2}
-  height:
+  platform1:
+  - {fileID: 139162, guid: f0f921ffdb63a43d0bd4d53a9d057e8d, type: 2}
+  - {fileID: 160302, guid: 933cf48b809b84dcfa5a5ba4c6486bab, type: 2}
+  - {fileID: 173304, guid: 792cb37d72b714a87881de09e107b89c, type: 2}
+  - {fileID: 135800, guid: 5eed43069ab5c477c9c51a3940f0af40, type: 2}
+  - {fileID: 139206, guid: 508940e8e0a497243b7dc9f78fc61cf8, type: 2}
+  - {fileID: 127870, guid: 506f55e4e90004b4fb5e0248c8a78dc9, type: 2}
+  platform2:
+  - {fileID: 139162, guid: ce982e585b9788144ba6154129f84b06, type: 2}
+  - {fileID: 127870, guid: a9a9860f534b42d499243b587e3b3e03, type: 2}
+  - {fileID: 135800, guid: 82d9c4adfc0d40b49ad4a7dd0b298b9a, type: 2}
+  - {fileID: 160302, guid: 73c5604e817fc0a44a46505ca4499d3a, type: 2}
+  - {fileID: 173304, guid: d73cba9fda67c514a9f5de55b68877ab, type: 2}
+  - {fileID: 139206, guid: 508940e8e0a497243b7dc9f78fc61cf8, type: 2}
+  height0:
+  - -0.5
+  - -0.5
+  - -0.55
+  - -0.55
+  - -0.55
+  - -0.65
+  height1:
+  - -0.5
+  - -0.55
+  - -0.55
+  - -0.55
+  - -0.65
+  - -0.5
+  height2:
   - -0.5
   - -0.5
   - -0.55
@@ -774,11 +802,6 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 449742, guid: ce982e585b9788144ba6154129f84b06, type: 2}
       propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114282954597049832, guid: ce982e585b9788144ba6154129f84b06,
-        type: 2}
-      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1989,12 +2012,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f32fc5580adad4cebb4a3e2ab2ccc140, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelCount: 50
+  levelCount: 30
   coin: {fileID: 1540764053}
   distance: {fileID: 371271933}
   camera: {fileID: 95531724}
   guiGameOver: {fileID: 329620783}
   levelGenerator: {fileID: 94932171}
+  numLevels: 3
 --- !u!82 &1687855910
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2062,7 +2086,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6514132}
   - component: {fileID: 2399318}
   m_Layer: 0
-  m_Name: grassTwo
+  m_Name: desertSandTwo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24,8 +24,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 127870}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 3}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.5, z: 2.5}
   m_LocalScale: {x: 50, y: 1, z: 2}
   m_Children:
   - {fileID: 4934009801648226}
@@ -49,7 +49,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: ce0f942248481544f8f4ae8d7023924e, type: 2}
+  - {fileID: 2100000, guid: a7405bd5a715b401dbb0a792b7d00b53, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -575,7 +575,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: a7405bd5a715b401dbb0a792b7d00b53, type: 2}
+  - {fileID: 2100000, guid: 704230e3865c148deb06be98e62cd6ce, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -643,7 +643,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: a7405bd5a715b401dbb0a792b7d00b53, type: 2}
+  - {fileID: 2100000, guid: 704230e3865c148deb06be98e62cd6ce, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -800,9 +800,7 @@ MonoBehaviour:
   goRight: 0
   both: 1
   items:
-  - {fileID: 119080, guid: fc6ee3c6e3de12e488fd0db7b87b1a22, type: 2}
-  - {fileID: 104532, guid: e88d753d0943c0b49b581a77769253b7, type: 2}
-  - {fileID: 176378, guid: f770b16cc89e37e4386488baf04a1ca0, type: 2}
+  - {fileID: 1490640867141758, guid: 20f97dca04cfe41f19804c7f3d44a2cf, type: 2}
   spawnersLeft:
   - {fileID: 114962290971996122}
   - {fileID: 114732863114867922}
