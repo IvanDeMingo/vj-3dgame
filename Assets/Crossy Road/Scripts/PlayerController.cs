@@ -98,6 +98,11 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
+	public void setControlMouse (bool mouse) {
+		mouseControl = mouse;
+		keyboardControl = !mouse;
+	}
+
 	void CheckIfIdle (float x, float y, float z) {
 		chick.transform.rotation = Quaternion.Euler (x, y, z);
 
