@@ -455,7 +455,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.25
   extraSpeed: 0.75
-  autoMove: 0
+  autoMove: 1
   player: {fileID: 158002758}
   offset: {x: 3, y: 6, z: -3}
 --- !u!114 &95531727
@@ -664,6 +664,11 @@ Prefab:
     - target: {fileID: 4253973098671188, guid: 85664b2247e05411c8585f6a9e6ece54, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114337321518651454, guid: 85664b2247e05411c8585f6a9e6ece54,
+        type: 2}
+      propertyPath: boxLimit
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 85664b2247e05411c8585f6a9e6ece54, type: 2}
