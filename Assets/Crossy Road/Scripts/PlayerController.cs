@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour {
 	public bool  enableAngleCheckOnMove = false;
 	public float angleCheck 			= 1;
 	public float angleCheckDist 		= 0.5f;
+	public double boxLimit = 1;
 
 	public bool mouseControl = false;
 	public bool keyboardControl = true;
@@ -69,48 +70,28 @@ public class PlayerController : MonoBehaviour {
 			}
 			if (mouseControl) {
 				if (Input.GetMouseButtonDown (0)) {
-					Vector3 mousePosition = Input.mousePosition;
-					/*
-					Debug.Log ("Mouse x = " + mousePosition.x.ToString ());
-					Debug.Log ("Mouse y = " + mousePosition.y.ToString ());
-					Debug.Log ("Mouse z = " + mousePosition.z.ToString ());
-					Debug.Log ("Chicken x = " + this.transform.position.x.ToString ());
-					Debug.Log ("Chicken y = " + this.transform.position.y.ToString ());
-					Debug.Log ("Chicken z = " + this.transform.position.z.ToString ());
-					*/
-					double h = System.Math.Sqrt ((mousePosition.z - this.transform.position.z) * (mousePosition.z - this.transform.position.z) + (mousePosition.x - this.transform.position.x) * (mousePosition.x - this.transform.position.x));
-					double cos = (mousePosition.z - this.transform.position.z) / h;
-					Debug.Log ("Cos: " + cos.ToString ());
-					Debug.Log ("PI: " + System.Math.PI.ToString ());
-					Debug.DrawRay (this.transform.position, mousePosition, Color.red, 10);
-					if (cos < (System.Math.PI)/4 || cos > 7*(System.Math.PI)/4) {
-						//UP
-						Debug.Log("UP");
-						moveDirection = UP;
-						CheckIfIdle (270, 0, 0);
-						Debug.Log("DONE");
-					}
-					if (cos > (System.Math.PI)/4 && cos < 3*(System.Math.PI)/4) {
-						//LEFT
+					Ray rayMouse = Camera.main.ScreenPointToRay (Input.mousePosition);
+					Ray rayChicken = Camera.main.ScreenPointToRay (this.transform.position);
+					Vector3 pointClick = rayMouse.origin;
+					Vector3 pointPlayer = rayChicken.origin;
+					if (pointClick.x < (pointPlayer.x - boxLimit) ) {
 						Debug.Log("LEFT");
 						moveDirection = LEFT;
 						CheckIfIdle (270, -90, 0);
-						Debug.Log("DONE");
-					}
-					if (cos > 3*(System.Math.PI)/4 && cos < 53*(System.Math.PI)/4) {
-						//DOWN
-						Debug.Log("DOWN");
-						moveDirection = DOWN;
-						CheckIfIdle (270, 180, 0);
-						Debug.Log("DONE");
-					}
-					if (cos > 5*(System.Math.PI)/4 && cos < 7*(System.Math.PI)/4) {
-						//RIGHT
+					} else if (pointClick.x > (pointPlayer.x + boxLimit) ) {
 						Debug.Log("RIGHT");
 						moveDirection = RIGHT;
 						CheckIfIdle (270, 90, 0);
-						Debug.Log("DONE");
+					} else if (pointClick.z > (pointPlayer.z + boxLimit) ) {
+						Debug.Log("UP");
+						moveDirection = UP;
+						CheckIfIdle (270, 0, 0);
+					} else if (pointClick.z < (pointPlayer.z - boxLimit)) {
+						Debug.Log("DOWN");
+						moveDirection = DOWN;
+						CheckIfIdle (270, 180, 0);
 					}
+				
 				}
 			}
 		}
@@ -136,7 +117,7 @@ public class PlayerController : MonoBehaviour {
 			SetMove ();
 		} else {
 			if (hit.collider.tag == "collider") {
-				Debug.Log ("Hit something with collider tag.");
+				//Debug.Log ("Hit something with collider tag.");
 				isIdle = true;
 			} else {
 				SetMove ();
@@ -174,7 +155,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void SetMove () {
-		Debug.Log ("Hit nothing. Keep moving.");
+		//Debug.Log ("Hit nothing. Keep moving.");
 
 		isIdle = false;
 		isMoving = true;
@@ -182,6 +163,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void CanMove () {
+		Debug.Log ("CanMove");
 		if (isMoving) {
 			if (keyboardControl) {
 				if (Input.GetKeyUp (KeyCode.UpArrow)) {
@@ -196,7 +178,6 @@ public class PlayerController : MonoBehaviour {
 				}
 			}
 			if (mouseControl) {
-				Debug.Log ("CanMove");
 				if (moveDirection == UP) {
 					Moving (new Vector3 (transform.position.x, transform.position.y, transform.position.z + moveDistance));
 					SetMoveForwardState ();
