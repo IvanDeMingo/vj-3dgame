@@ -76,24 +76,23 @@ public class PlayerController : MonoBehaviour {
 					Ray rayChicken = Camera.main.ScreenPointToRay (this.transform.position);
 					Vector3 pointClick = rayMouse.origin;
 					Vector3 pointPlayer = rayChicken.origin;
-					if (pointClick.x < (pointPlayer.x - boxLimit) ) {
-						Debug.Log("LEFT");
+					if (pointClick.x < (pointPlayer.x - boxLimit)) {
+						Debug.Log ("LEFT");
 						moveDirection = LEFT;
 						CheckIfIdle (270, -90, 0);
-					} else if (pointClick.x > (pointPlayer.x + boxLimit) ) {
-						Debug.Log("RIGHT");
+					} else if (pointClick.x > (pointPlayer.x + boxLimit)) {
+						Debug.Log ("RIGHT");
 						moveDirection = RIGHT;
 						CheckIfIdle (270, 90, 0);
-					} else if (pointClick.z > (pointPlayer.z + boxLimit) ) {
-						Debug.Log("UP");
-						moveDirection = UP;
-						CheckIfIdle (270, 0, 0);
 					} else if (pointClick.z < (pointPlayer.z - boxLimit)) {
-						Debug.Log("DOWN");
+						Debug.Log ("DOWN");
 						moveDirection = DOWN;
 						CheckIfIdle (270, 180, 0);
+					} else if (pointClick.z > (pointPlayer.z + boxLimit)) {
+						Debug.Log ("UP");
+						moveDirection = UP;
+						CheckIfIdle (270, 0, 0);
 					}
-				
 				}
 			}
 		}
