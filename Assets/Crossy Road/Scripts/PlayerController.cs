@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour {
 	public float angleCheck 			= 1;
 	public float angleCheckDist 		= 0.5f;
 	public double boxLimit = 1;
+	private int distanceCount 			= 0;
+	private int distanceMax 			= 0;
 
 	public bool mouseControl = false;
 	public bool keyboardControl = true;
@@ -163,14 +165,18 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void CanMove () {
-		Debug.Log ("CanMove");
 		if (isMoving) {
-			if (keyboardControl) {
+			if(keyboardControl){
 				if (Input.GetKeyUp (KeyCode.UpArrow)) {
 					Moving (new Vector3 (transform.position.x, transform.position.y, transform.position.z + moveDistance));
-					SetMoveForwardState ();
+					distanceCount++;
+					if (distanceCount > distanceMax) {
+						distanceMax = distanceCount;
+						SetMoveForwardState ();
+					}
 				} else if (Input.GetKeyUp (KeyCode.DownArrow)) {
 					Moving (new Vector3 (transform.position.x, transform.position.y, transform.position.z - moveDistance));
+					distanceCount--;
 				} else if (Input.GetKeyUp (KeyCode.LeftArrow)) {
 					Moving (new Vector3 (transform.position.x - moveDistance, transform.position.y, transform.position.z));
 				} else if (Input.GetKeyUp (KeyCode.RightArrow)) {
@@ -193,7 +199,6 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Moving (Vector3 pos) {
-		Debug.Log ("Moving");
 		isIdle = false;
 		isMoving = false;
 		isJumping = true;
@@ -203,7 +208,6 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void MoveComplete () {
-		Debug.Log ("MoveComplete");
 		isJumping = false;
 		isIdle = true;
 
