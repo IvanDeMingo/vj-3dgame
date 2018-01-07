@@ -58,6 +58,11 @@ public class PlayerController : MonoBehaviour {
 		IsVisible ();
 	}
 
+    public void setMouseControl (bool mouse) {
+        mouseControl = mouse;
+        keyboardControl = !mouse;
+    }
+
 	void CanIdle () {
 		if (isIdle) {
 			if (keyboardControl) {
